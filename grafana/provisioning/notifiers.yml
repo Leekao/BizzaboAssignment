@@ -1,0 +1,9 @@
+notifiers:
+  - name: slack-notifier
+    type: slack
+    uid: notifier1
+    is_default: true
+    org_id: 1
+    settings:
+      url: YOUR_SLACK_WEBHOOK_URL
+      channel: '#alerts'

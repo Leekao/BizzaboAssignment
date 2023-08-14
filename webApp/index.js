@@ -7,7 +7,7 @@ const defaultMetrics = promClient.collectDefaultMetrics
 defaultMetrics({timeout: 5000})
 
 const httpResponsesTotal = new promClient.Counter({
-  name: 'responses_total',
+  name: 'http_responses_total',
   help: 'HTTP responses (Total)',
   labelNames: ['status'],
 })

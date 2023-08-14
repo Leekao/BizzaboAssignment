@@ -1,0 +1,48 @@
+{
+  "title": "Bizzabo App Metrics",
+  "panels": [
+    {
+      "title": "HTTP Responses",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "http_responses_total",
+          "legendFormat": "{{ status }}"
+        }
+      ],
+      "alert": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [1],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": ["A", "5m", "now"]
+            },
+            "reducer": {
+              "params": [],
+              "type": "sum"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "HTTP Error Responses Alert",
+        "noDataState": "no_data",
+        "notifications": [
+          {
+            "uid": "notifier1"
+          }
+        ],
+        "for": "5m",
+        "message": "High error rate!"
+      }
+    }
+  ]
+}
