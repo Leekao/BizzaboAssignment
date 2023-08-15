@@ -31,5 +31,4 @@ spec:
     - protocol: TCP
       port: 9999
       targetPort: 9999
-  # This will need to change in production to load balancer (or better yet, an Ingress)
   type: NodePort
