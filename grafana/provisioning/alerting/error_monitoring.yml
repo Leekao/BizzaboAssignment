@@ -16,7 +16,7 @@ groups:
               datasourceUid: PBFA97CFB590B2093
               model:
                 editorMode: builder
-                expr: sum(http_responses_total{status="404"})
+                expr: http_non_200_responses_last_minute
                 hide: false
                 instant: true
                 intervalMs: 1000
@@ -39,9 +39,6 @@ groups:
                       query:
                         params:
                             - C
-                      reducer:
-                        params: []
-                        type: last
                       type: query
                 datasource:
                     type: __expr__

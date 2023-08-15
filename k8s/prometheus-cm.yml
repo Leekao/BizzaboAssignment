@@ -8,13 +8,13 @@ data:
     - name: bizzabo_alert_rules
       rules:
       - alert: HighHTTPErrorRate
-        expr: sum(http_responses_total{status!~"2.."}) > 1
+        expr: http_non_200_responses_last_minute  > 1
         for: 1m
         labels:
           severity: critical
         annotations:
           summary: High HTTP error rate detected
-          description: 'There have been more than 1 errors in the last 2 minutes'
+          description: 'There have been more than 1 errors in the last minute'
   prometheus.yml: |
     global:
       scrape_interval: 10s

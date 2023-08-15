@@ -6,7 +6,7 @@
       "type": "graph",
       "targets": [
         {
-          "expr": "http_responses_total",
+          "expr": "http_non_200_responses_last_minute ",
           "legendFormat": "{{ status }}"
         }
       ],
@@ -22,10 +22,6 @@
             },
             "query": {
               "params": ["A", "5m", "now"]
-            },
-            "reducer": {
-              "params": [],
-              "type": "sum"
             },
             "type": "query"
           }
