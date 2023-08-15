@@ -19,7 +19,7 @@ Presented here is a boilerplate for monitoring a web application using Grafana a
 * In order to use k8s You'll need to change `k8s/grafana.yml` and fix the absolute path to fit your path, ABSOLUTE path only!
 * Run `kubectl apply -f k8s` from the project root folder
 * Access any of the services using the nodePorts (type `kubectl get services` for a list of the services, under `PORTS` you'll see the nodePort, the schema is `[internal port]:[node port]/TCP`)
-* The Bizzabo web app is available on port 80 or on the node port of the nginx
+* The Bizzabo web app is available on it's NodePort or through nginx
 
 
 # Alerts
