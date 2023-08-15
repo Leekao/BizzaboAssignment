@@ -22,14 +22,18 @@ spec:
           mountPath: /etc/grafana/provisioning
         - name: dashboards-volume
           mountPath: /var/lib/grafana/dashboards
+      #This will need to change in production to persistent volume claim, when using locally change the absolute path for the files
       volumes:
       - name: provisioning-volume
-        #This will need to change in production to persistent volume claim, when using locally change the absolute path for the files
         hostPath:
-          path: /projects/BizzaboAssignment/grafana/provisioning
+          #This is the path when using Docker-Desktop with WSL2 on Windows
+          path: /run/desktop/mnt/host/c/projects/BizzaboAssignment/grafana/provisioning
+          type: Directory
       - name: dashboards-volume
         hostPath:
-          path: /projcets/BizzaboAssignment/grafana/dashboards
+          #This is the path when using Docker-Desktop with WSL2 on Windows
+          path: /run/desktop/mnt/host/c/projects/BizzaboAssignment/grafana/dashboards
+          type: Directory
 
 ---
 apiVersion: v1
