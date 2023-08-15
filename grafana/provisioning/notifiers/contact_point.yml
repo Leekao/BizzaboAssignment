@@ -1,0 +1,16 @@
+# config file version
+apiVersion: 1
+
+# List of contact points to import or update
+contactPoints:
+  - orgId: 1
+    name: slack
+    receivers:
+      - uid: notifier1
+        type: telegram
+        disableResolveMessage: false
+        settings:
+          url: https://en8867ck18q12.x.pipedream.net
+          avatar_url: https://my_avatar
+          use_discord_username: Grafana
+          message: High Amount Of Errors

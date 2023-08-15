@@ -5,5 +5,5 @@ notifiers:
     is_default: true
     org_id: 1
     settings:
-      url: YOUR_SLACK_WEBHOOK_URL
+      url: https://en8867ck18q12.x.pipedream.net
       channel: '#alerts'

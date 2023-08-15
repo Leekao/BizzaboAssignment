@@ -1,0 +1,62 @@
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: Error_Monitoring
+      folder: Monitoring
+      interval: 1m
+      rules:
+        - uid: f1a3bd9a-db9a-44ca-9125-aa9dfc99b0a9
+          title: Bizzabo-Errors
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: PBFA97CFB590B2093
+              model:
+                editorMode: builder
+                expr: sum(http_responses_total{status="404"})
+                hide: false
+                instant: true
+                intervalMs: 1000
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              relativeTimeRange:
+                from: 300
+                to: 0
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                hide: false
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: NoData
+          notifications: 
+            - uid: "notifier1"
+          execErrState: Error
+          for: 2m
+          annotations:
+            summary: High number of errors in the last 2m
+          isPaused: false
