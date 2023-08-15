@@ -12,6 +12,11 @@ spec:
       labels:
         app: nginx-reverse-proxy
     spec:
+      initContainers:
+      - name: nginx-waiter
+        # for the reverse proxy to work 100% of the time we need to start Nginx after the service is visible and responsive
+        image: alpine
+        command: ['sh', '-c', 'until nslookup bizzabo-app-service.default.svc.cluster.local; do echo waiting for bizzabo; sleep 2; done;']
       containers:
       - name: nginx
         resources:
