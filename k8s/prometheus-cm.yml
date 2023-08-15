@@ -3,9 +3,30 @@ kind: ConfigMap
 metadata:
   name: prometheus-config
 data:
+  alert-rule.yml: |
+    groups:
+    - name: bizzabo_alert_rules
+      rules:
+      - alert: HighHTTPErrorRate
+        expr: sum(http_responses_total{status!~"2.."}) > 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: High HTTP error rate detected
+          description: 'There have been more than 1 errors in the last 2 minutes'
   prometheus.yml: |
     global:
       scrape_interval: 10s
+
+    rule_files:
+      - "/etc/prometheus/alert-rule.yml"
+
+    alerting:
+      alertmanagers:
+      - static_configs:
+        - targets:
+          - alertmanager:9093
 
     scrape_configs:
       - job_name: 'Bizzabo-server'

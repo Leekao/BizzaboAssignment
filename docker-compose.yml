@@ -5,10 +5,17 @@ services:
     image: bizzabo-app
     ports:
       - '9999:9999'
+  alertmanager:
+    image: prom/alertmanager:latest
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    ports:
+      - '9093:9093'
   prometheus:
     image: prom/prometheus:latest
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert-rule.yml:/etc/prometheus/alert-rule.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
